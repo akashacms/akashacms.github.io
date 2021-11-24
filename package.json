@@ -1,0 +1,42 @@
+{
+  "name": "akashacms.github.io",
+  "version": "1.0.0",
+  "description": "Index website for AkashaCMS project sites",
+  "scripts": {
+    "build": "npm-run-all build:copy build:render",
+    "build:copy": "akasharender copy-assets config.js",
+    "build:render": "akasharender render config.js",
+    "deploy": "cd out && rsync --archive --delete --verbose ./ user-name@server-host.com:path-to-docroot/ ",
+    "watch": "npm-run-all --parallel watcher preview",
+    "watcher": "akasharender watch config.js",
+    "preview": "live-server out",
+    "minify": "html-minifier --collapse-whitespace --conservative-collapse --html5 --keep-closing-slash --preserve-line-breaks --remove-comments --file-ext html  --input-dir out --output-dir out",
+    "gh-pages": "akasharender gh-pages-publish config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akashacms/akashacms.github.io.git"
+  },
+  "keywords": [],
+  "author": "David Herron <david@davidherron.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akashacms/akashacms.github.io/issues"
+  },
+  "homepage": "https://github.com/akashacms/akashacms.github.io#readme",
+  "dependencies": {
+    "@akashacms/plugins-base": "akashacms/akashacms-base#watcher",
+    "@akashacms/plugins-booknav": "akashacms/akashacms-booknav",
+    "@akashacms/plugins-breadcrumbs": "akashacms/akashacms-breadcrumbs",
+    "@akashacms/plugins-embeddables": "akashacms/akashacms-embeddables#watcher",
+    "@akashacms/plugins-tagged-content": "akashacms/akashacms-tagged-content#watcher",
+    "@akashacms/theme-bootstrap": "akashacms/akashacms-theme-bootstrap#watcher",
+    "akasharender": "akashacms/akasharender#watcher",
+    "npm-run-all": "^4.1.x",
+    "bootstrap": "^4.6.x",
+    "@compodoc/live-server": "^1.2.x",
+    "html-minifier": "^3.1.1",
+    "popper.js": "^1.16.x",
+    "jquery": "^3.5.x"
+  }
+}
